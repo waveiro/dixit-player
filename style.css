@@ -1,0 +1,138 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color: #e89cb8;
+}
+
+.piece {
+  margin: 50px;
+  position: relative;
+}
+
+.piece__upper {
+  width: 330px;
+  height: 330px;
+  background-color: var(--color);
+  border-radius: 50%;
+  border: 2px solid var(--color);
+}
+
+.upper__inner--increase {
+  content: ' ';
+  height: 300px;
+  width: 165px;
+  position: absolute;
+  top: 0;
+  left: 165px;
+  z-index: 1000;
+}
+
+.upper__inner--decrease {
+  content: ' ';
+  height: 300px;
+  width: 165px;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}
+
+.piece__lower {
+  width: 540px;
+  height: 500px;
+  background-color: var(--color);
+  clip-path: ellipse(25% 40% at 50% 50%);
+  position: absolute;
+  top: 85px;
+  left: -103px;
+}
+
+.upper__inner {
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.upper__inner .dot {
+  --rotation: 0;
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  text-align: center;
+  counter-increment: section;
+  transform: rotate(calc(var(--rotation) * 120deg));
+  font-size: 1.5rem;
+  background-color: #b79d60;
+  border-radius: 40px;
+}
+
+.upper__inner::before {
+  content: '';
+  position: absolute;
+  background-color: var(--color);
+  z-index: 10;
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.number {
+  width: 90px;
+  height: 90px;
+  text-align: center;
+  font-size: 48px;
+  background-color: #b79d60;
+  border: 5px solid #d1c777;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute;
+  top: 70px;
+  left: 163px;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper__inner.animation[direction='f'] {
+  animation-name: rodar-frente;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+.upper__inner.animation[direction='b'] {
+  animation-name: rodar-tras;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+}
+
+@keyframes rodar-frente {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(120deg);
+  }
+}
+
+@keyframes rodar-tras {
+  from {
+    transform: rotate(120deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
